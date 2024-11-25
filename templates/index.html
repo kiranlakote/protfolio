@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{hero_data.name}} - Portfolio</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free Website Template" name="keywords">
+        <meta content="Free Website Template" name="description">
+
+        <!-- Favicon -->
+        <link href="static/img/favicon.ico" rel="icon">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="static/lib/animate/animate.min.css" rel="stylesheet">
+        <link href="static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="static/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="static/css/style.css" rel="stylesheet">
+    </head>
+
+    <body data-spy="scroll" data-target=".navbar" data-offset="51">
+        <!-- Nav Bar Start -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light">
+            <div class="container-fluid">
+                <!-- <a href="index.html" class="navbar-brand">{{hero_data.name}}</a> -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        {% for item in menu_items %}
+                            <a href="{{ item.href }}" class="nav-item nav-link {% if item.active %}active{% endif %}">{{ item.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+
+
+        <!-- Hero Start -->
+        <div class="hero" id="home">
+            <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-sm-12 col-md-6">
+                <div class="hero-content">
+                    <div class="hero-text">
+                    <p>I'm</p>
+                    <h1>{{ hero_data.name }}</h1>
+                    <h2></h2>
+                    <div class="typed-text">{{ hero_data.roles }}</div>
+                    </div>
+                    {% if hero_data.social_links %}
+                        <div class="hero-btn">
+                            <a class="btn" href="{{ hero_data.hire_me_link }}">Hire Me</a>
+                            <a class="btn" href="{{ hero_data.contact_me_link }}">Contact Me</a>
+                        </div>
+                    {% endif %}
+                </div>
+                </div>
+                <div class="col-sm-12 col-md-6 d-none d-md-block">
+                <div class="hero-image">
+                    {% if hero_data.hero_image %}
+                        <img src="{{ hero_data.hero_image }}" alt="Hero Image">
+                    {% endif %}
+                    <!-- <img src="{{ hero_data.hero_image }}" alt="Hero Image"> -->
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+
+
+        <!-- About Start -->
+        <div class="about wow fadeInUp" data-wow-delay="0.1s" id="about">
+            <div class="container-fluid">
+            <div class="row align-items-center">
+                {% if about_data.image %}
+                    <div class="col-lg-6">
+                        <div class="about-img">
+                            <img src="{{ about_data.image }}" alt="Image">
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if about_data.image %}
+                    <div class="col-lg-6">
+                {% else %}
+                    <div class="col-lg-12">
+                {% endif %}
+                
+                <div class="about-content">
+                    <div class="section-header text-left">
+                    <p>{{ about_data.title }}</p>
+                    <h2>{{ about_data.subtitle }}</h2>
+                    </div>
+                    <div class="about-text">
+                    <p>
+                        {{ about_data.description }}
+                    </p>
+                    </div>
+                    <div class="skills">
+                    {% for skill in about_data.skills %}
+                        <div class="skill-name">
+                        <p>{{ skill.name }}</p><p>{{ skill.percentage }}%</p>
+                        </div>
+                        <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    {% if about_data.learn_more_link %}
+                        <a class="btn" href="{{ about_data.learn_more_link }}">Learn More</a>
+                    {% endif %}
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- About End -->
+        
+        
+        <!-- Service Start -->
+        {% if service_data.title %}
+            <div class="service" id="service">
+                <div class="container">
+                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                    <p>{{ service_data.title }}</p>
+                    <h2>{{ service_data.subtitle }}</h2>
+                </div>
+                <div class="row">
+                    {% for service in service_data.services %}
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="{{ service.delay }}">
+                        <div class="service-item">
+                        <div class="service-icon">
+                            <i class="{{ service.icon }}"></i>
+                        </div>
+                        <div class="service-text">
+                            <h3>{{ service.name }}</h3>
+                            <p>{{ service.description }}</p>
+                        </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        <!-- Service End -->
+        
+        
+         <!-- Experience Start -->
+        {% if experience_data %}
+            <div class="experience" id="experience">
+                <div class="container">
+                    <header class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                        <p>{{ experience_data.title }}</p>
+                        <h2>{{ experience_data.subtitle }}</h2>
+                    </header>
+                    <div class="timeline">
+                        {% for experience in experience_data.experiences %}
+                            <div class="timeline-item {% if loop.index0 is divisibleby 2 %}left{% else %}right{% endif %} wow {% if loop.index0 is divisibleby 2 %}slideInLeft{% else %}slideInRight{% endif %}" data-wow-delay="0.1s">
+                                <div class="timeline-text">
+                                    <div class="timeline-date">{{ experience.date }}</div>
+                                    <h2>{{ experience.position }}</h2>
+                                    <h4>{{ experience.company }}</h4>
+                                    <p>{{ experience.description }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <!-- Job Experience End -->
+        
+        
+        <!-- Contact Start -->
+        <div class="contact wow fadeInUp" data-wow-delay="0.1s" id="contact">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 footer wow fadeIn" data-wow-delay="0.3s">
+                            <div class="footer-info">
+                                <h2>{{ footer_data.name }}</h2>
+                                <h3>{{ footer_data.address }}</h3>
+                                <!-- <div class="footer-menu"> -->
+                                    <h3>{{ footer_data.phone }}<h3>
+                                    <h3>{{ footer_data.email }}<h3>
+                                <!-- </div> -->
+                                <div class="footer-social">
+                                    {% for social in footer_data.social_links %}
+                                    <a href="{{ social.link }}"><i class="{{ social.icon }}"></i></a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="contact-form">
+                                <div id="success"></div>
+                                <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                                    <div class="control-group">
+                                        <input type="text" class="form-control" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+                                        <p class="help-block"></p>
+                                    </div>
+                                    <div class="control-group">
+                                        <input type="email" class="form-control" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                                        <p class="help-block"></p>
+                                    </div>
+                                    <div class="control-group">
+                                        <input type="text" class="form-control" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
+                                        <p class="help-block"></p>
+                                    </div>
+                                    <div class="control-group">
+                                        <textarea class="form-control" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                                        <p class="help-block"></p>
+                                    </div>
+                                    <div>
+                                        <button class="btn" type="submit" id="sendMessageButton">Send Message</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
+
+        <!-- Footer Start -->
+        <div class="footer wow fadeIn" data-wow-delay="0.3s">
+            <!-- <div class="container-fluid"> -->
+                <!-- <div class="container">
+                    <div class="footer-info footer">
+                        <h2>{{ footer_data.name }}</h2>
+                        <h3>{{ footer_data.address }}</h3>
+                        <div class="footer-menu">
+                            <p>{{ footer_data.phone }}</p>
+                            <p>{{ footer_data.email }}</p>
+                        </div>
+                        <div class="footer-social">
+                            {% for social in footer_data.social_links %}
+                            <a href="{{ social.link }}"><i class="{{ social.icon }}"></i></a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div> -->
+                <div class="container copyright">
+                    <p>&copy; <a href="#">{{ footer_data.site_name }}</a>, All Right Reserved | Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                </div>
+            <!-- </div> -->
+        </div>
+        <!-- Footer End -->
+        
+        
+        <!-- Back to top button -->
+        <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        
+        <!-- Pre Loader -->
+        <div id="loader" class="show">
+            <div class="loader"></div>
+        </div>
+
+        
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="static/lib/easing/easing.min.js"></script>
+        <script src="static/lib/wow/wow.min.js"></script>
+        <script src="static/lib/waypoints/waypoints.min.js"></script>
+        <script src="static/lib/typed/typed.min.js"></script>
+        <script src="static/lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="static/lib/isotope/isotope.pkgd.min.js"></script>
+        <script src="static/lib/lightbox/js/lightbox.min.js"></script>
+        
+        <!-- Contact Javascript File -->
+        <script src="static/mail/jqBootstrapValidation.min.js"></script>
+        <script src="static/mail/contact.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="static/js/main.js"></script>
+    </body>
+</html>
